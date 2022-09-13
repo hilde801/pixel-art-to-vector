@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, DetailedHTMLProps, ReactElement } from "react";
+import { AnchorHTMLAttributes, DetailedHTMLProps, FC, ReactComponentElement, ReactElement } from "react";
 
 type IconAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
 	icon: ReactElement;
