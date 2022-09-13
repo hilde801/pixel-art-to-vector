@@ -1,4 +1,5 @@
 import { Root, createRoot } from "react-dom/client";
+import "./i18next";
 
 const rootElement: HTMLElement = document.getElementById("root")!,
 	root: Root = createRoot(rootElement);
