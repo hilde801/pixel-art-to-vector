@@ -1,8 +1,13 @@
 {
 	"name": "pixel-art-to-vector",
-	"private": true,
+	"displayName": "Pixel Art to Vector",
+	"description": "A simple app to convert pixel art to vector images",
+	"author": {
+		"name": "Hilder Gill",
+		"email": "hildergill@gmail.com",
+		"url": "https://github.com/hilde801"
+	},
 	"version": "0.0.0",
-	"type": "module",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
