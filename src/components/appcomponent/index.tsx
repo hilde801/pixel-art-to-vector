@@ -3,7 +3,7 @@ import Vector from "../../lib/vector";
 import { FooterComponent } from "../footercomponent";
 import { HeaderComponent } from "../headercomponent";
 import { MainForm, OnSubmitMainForm } from "../mainform";
-import Task from "./task";
+import Task from "../../lib/task";
 
 export const AppComponent: FC = () => {
 	const [tasks, setTasks] = useState<Task[]>([]);
