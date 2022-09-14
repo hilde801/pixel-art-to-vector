@@ -24,7 +24,7 @@ export const AppComponent: FC = () => {
 				const tempTask: Task = {
 					originalFilename: file.name,
 					vector,
-					errors: errors.length>0?errors:undefined
+					errors: errors.length > 0 ? errors : undefined
 				};
 
 				setTasks((current: Task[]) => [...current, tempTask]);
