@@ -1,4 +1,4 @@
-import { createElement, HTMLAttributes, ReactElement, ReactSVGElement, SVGAttributes } from "react";
+import { createElement, ReactSVGElement, SVGAttributes } from "react";
 import Color from "./color";
 import Pixel from "./pixel";
 
