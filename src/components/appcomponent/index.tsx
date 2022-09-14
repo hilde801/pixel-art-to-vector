@@ -14,40 +14,21 @@ export const AppComponent: FC = () => {
 
 	const onSubmitMainForm: OnSubmitMainForm = (files: File[]) => {
 		files.forEach((file: File) => {
-			const fileReader: FileReader = new FileReader();
+			Vector.fromFile(file).then((vector: Vector) => {
+				const errors: string[] = [];
 
-			fileReader.onload = () => {
-				const imageElement: HTMLImageElement = document.createElement("img");
+				if (vector.width > 256 || vector.height > 256) {
+					errors.push(t("errors:exceedMaximumSize"));
+				}
 
-				imageElement.onload = () => {
-					const canvasElement: HTMLCanvasElement = document.createElement("canvas");
-					canvasElement.width = imageElement.width;
-					canvasElement.height = imageElement.height;
-
-					const context: CanvasRenderingContext2D = canvasElement.getContext("2d")!;
-					context.drawImage(imageElement, 0, 0, imageElement.width, imageElement.height);
-
-					const imageData: ImageData = context.getImageData(0, 0, imageElement.width, imageElement.height),
-						vector: Vector = new Vector(imageData),
-						tempErrors: string[] = [];
-
-					if (vector.width > 256 || vector.height > 256) {
-						tempErrors.push(t("errors:exceedMaximumSize"));
-					}
-
-					const task: Task = {
-						originalFilename: file.name,
-						vector,
-						errors: tempErrors.length > 0 ? tempErrors : undefined
-					};
-
-					setTasks((current: Task[]) => [...current, task]);
+				const tempTask: Task = {
+					originalFilename: file.name,
+					vector,
+					errors: errors.length>0?errors:undefined
 				};
 
-				imageElement.src = String(fileReader.result);
-			};
-
-			fileReader.readAsDataURL(file);
+				setTasks((current: Task[]) => [...current, tempTask]);
+			});
 		});
 	};
 
