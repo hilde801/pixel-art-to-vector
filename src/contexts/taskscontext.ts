@@ -5,8 +5,6 @@ export type TasksContextProps = {
 	tasks: Task[];
 };
 
-export type TasksContext = Context<TasksContextProps>;
-
-export const tasksContext: TasksContext = createContext<TasksContextProps>({
+export const TasksContext: Context<TasksContextProps> = createContext<TasksContextProps>({
 	tasks: []
 });
