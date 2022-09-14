@@ -11,8 +11,8 @@ export const AppComponent: FC = () => {
 			<HeaderComponent />
 
 			<main>
-				{files.length <= 0 && <MainForm />}
-				{files.length > 0 && <p>Process file here...</p>}
+				{files.length <= 0 && <MainForm onSubmit={(files: File[]) => setFiles(files)} />}
+				{files.length > 0 && <p>Process files here...</p>}
 			</main>
 
 			<FooterComponent />
