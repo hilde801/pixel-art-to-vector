@@ -5,6 +5,7 @@ import { HeaderComponent } from "../headercomponent";
 import { MainForm, OnSubmitMainForm } from "../mainform";
 import Task from "../../lib/task";
 import { useTranslation } from "react-i18next";
+import { TasksContext } from "../../contexts/taskscontext";
 
 export const AppComponent: FC = () => {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -51,7 +52,7 @@ export const AppComponent: FC = () => {
 	};
 
 	return (
-		<>
+		<TasksContext.Provider value={{ tasks }}>
 			<HeaderComponent />
 
 			<main>
@@ -60,6 +61,6 @@ export const AppComponent: FC = () => {
 			</main>
 
 			<FooterComponent />
-		</>
+		</TasksContext.Provider>
 	);
 };
