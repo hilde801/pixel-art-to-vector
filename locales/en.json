@@ -6,5 +6,8 @@
 	"footerComponent": {
 		"visitRepository": "Visit Repository on GitHub",
 		"copyrightText": "Copyright © 2022 {{authorName}}"
+	},
+	"errors": {
+		"exceedMaximumSize": "The uploaded image exceeds the maximum size. This entry will be omitted from the output."
 	}
 }
