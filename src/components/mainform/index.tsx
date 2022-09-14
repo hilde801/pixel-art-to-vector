@@ -12,7 +12,14 @@ export const MainForm: FC<MainFormProps> = (props: MainFormProps) => {
 	const onSubmit: FormEventHandler = (event: FormEvent) => {
 		event.preventDefault();
 
-		/** @Todo Add something here later */
+		if (props.onSubmit) {
+			const files: FileList = (event.target as any).fileInput.files,
+				filesArray: File[] = [];
+
+			for (let i = 0; i < files.length; i++) filesArray.push(files[i]);
+
+			props.onSubmit(filesArray);
+		}
 	};
 
 	return (
