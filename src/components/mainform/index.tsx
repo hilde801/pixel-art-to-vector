@@ -27,7 +27,7 @@ export const MainForm: FC<MainFormProps> = (props: MainFormProps) => {
 			<label htmlFor="fileInput">Upload your file</label>
 			<input type="file" name="fileInput" id="fileInput" accept="image/*" required />
 			<input type="reset" value="Reset" />
-			<input type="reset" value="Submit" />
+			<input type="submit" value="Submit" />
 		</form>
 	);
 };
