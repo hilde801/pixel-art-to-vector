@@ -9,7 +9,7 @@ class Vector {
 		this._imageData = imageData;
 	}
 
-	public generateVector(): ReactSVGElement {
+	public generateVector = async (): Promise<ReactSVGElement> => {
 		const elements: ReactSVGElement[] = [];
 
 		for (let i = 0; i < this._imageData.data.length; i += 4) {
@@ -35,7 +35,7 @@ class Vector {
 		};
 
 		return createElement("svg", props, elements);
-	}
+	};
 
 	public get width(): number {
 		return this._imageData.width;
