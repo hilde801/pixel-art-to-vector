@@ -1,5 +1,9 @@
-import { FC } from "react";
-import IconAnchorProps from "./iconanchorprops";
+import { AnchorHTMLAttributes, FC, ReactElement } from "react";
+
+export type IconAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+	icon: ReactElement;
+	text: string;
+};
 
 export const IconAnchor: FC<IconAnchorProps> = (props: IconAnchorProps) => {
 	return (
