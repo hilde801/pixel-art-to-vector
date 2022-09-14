@@ -37,6 +37,31 @@ class Vector {
 		return createElement("svg", props, elements);
 	};
 
+	public static fromFile = (file: File): Promise<Vector> =>
+		new Promise<Vector>((resolve) => {
+			const fileReader: FileReader = new FileReader();
+
+			fileReader.onload = () => {
+				const image: HTMLImageElement = document.createElement("img");
+
+				image.onload = () => {
+					const canvas: HTMLCanvasElement = document.createElement("canvas");
+					canvas.width = image.width;
+					canvas.height = image.height;
+
+					const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
+					context.drawImage(image, 0, 0, image.width, image.height);
+
+					const imageData: ImageData = context.getImageData(0, 0, image.width, image.height);
+					resolve(new Vector(imageData));
+				};
+
+				image.src = String(fileReader.result);
+			};
+
+			fileReader.readAsDataURL(file);
+		});
+
 	public get width(): number {
 		return this._imageData.width;
 	}
