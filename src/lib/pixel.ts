@@ -1,4 +1,4 @@
-import { createElement, DetailedHTMLProps, HTMLProps, ReactSVGElement, SVGAttributes } from "react";
+import { createElement, ReactSVGElement, SVGAttributes } from "react";
 import Color from "./color";
 
 class Pixel {
