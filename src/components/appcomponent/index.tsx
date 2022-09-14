@@ -3,9 +3,10 @@ import Vector from "../../lib/vector";
 import { FooterComponent } from "../footercomponent";
 import { HeaderComponent } from "../headercomponent";
 import { MainForm, OnSubmitMainForm } from "../mainform";
+import Task from "./task";
 
 export const AppComponent: FC = () => {
-	const [vectors, setVector] = useState<Vector[]>([]);
+	const [tasks, setTasks] = useState<Task[]>([]);
 
 	const onSubmitMainForm: OnSubmitMainForm = (files: File[]) => {
 		files.forEach((file: File) => {
@@ -22,8 +23,11 @@ export const AppComponent: FC = () => {
 					const context: CanvasRenderingContext2D = canvasElement.getContext("2d")!;
 					context.drawImage(imageElement, 0, 0, imageElement.width, imageElement.height);
 
-					const imageData: ImageData = context.getImageData(0, 0, imageElement.width, imageElement.height);
-					setVector((current: Vector[]) => [...current, new Vector(imageData)]);
+					const imageData: ImageData = context.getImageData(0, 0, imageElement.width, imageElement.height),
+						tempVector: Vector = new Vector(imageData),
+						tempTask: Task = new Task(tempVector, file.name);
+
+					setTasks((current: Task[]) => [...current, tempTask]);
 				};
 
 				imageElement.src = String(fileReader.result);
@@ -38,8 +42,8 @@ export const AppComponent: FC = () => {
 			<HeaderComponent />
 
 			<main>
-				{vectors.length <= 0 && <MainForm onSubmit={onSubmitMainForm} />}
-				{vectors.length > 0 && <p>{vectors.length}</p>}
+				{tasks.length <= 0 && <MainForm onSubmit={onSubmitMainForm} />}
+				{tasks.length > 0 && <p>{tasks.length}</p>}
 			</main>
 
 			<FooterComponent />
