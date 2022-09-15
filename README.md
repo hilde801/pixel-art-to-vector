@@ -2,7 +2,10 @@
 
 ⚠️ **This project is still under development**
 
-A simple app to convert pixel art to vector images.
+<img src="./docs/screenshot_1.png" height="360" alt="Pixel Art to Vector prompting the user to upload files" />
+<img src="./docs/screenshot_2.png" height="360" alt="Pixel Art to Vector after processing uploading files" />
+
+A simple app to convert pixel art to vector images
 
 Built with:
 
