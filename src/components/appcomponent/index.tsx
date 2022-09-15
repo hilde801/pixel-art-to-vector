@@ -6,30 +6,33 @@ import { MainForm, OnSubmitMainForm } from "../mainform";
 import Task from "../../lib/task";
 import { useTranslation } from "react-i18next";
 import { TasksContext } from "../../contexts/taskscontext";
+import { renderToStaticMarkup } from "react-dom/server";
 
 export const AppComponent: FC = () => {
 	const [tasks, setTasks] = useState<Task[]>([]);
 
 	const { t } = useTranslation();
 
-	const onSubmitMainForm: OnSubmitMainForm = (files: File[]) => {
-		files.forEach((file: File) => {
-			Vector.fromFile(file).then((vector: Vector) => {
-				const errors: string[] = [];
+	const onSubmitMainForm: OnSubmitMainForm = async (files: File[]) => {
+		for (let i = 0; i < files.length; i++) {
+			const vector: Vector = await Vector.fromFile(files[i]);
+			const errors: string[] = [];
 
-				if (vector.width > 256 || vector.height > 256) {
-					errors.push(t("errors:exceedMaximumSize"));
-				}
+			if (vector.width > 256 || vector.height > 256) {
+				errors.push(t("errors:exceedMaximumSize"));
+			}
 
-				const tempTask: Task = {
-					originalFilename: file.name,
-					vector,
-					errors: errors.length > 0 ? errors : undefined
-				};
+			/** @Todo Add more errors here when necessary */
 
-				setTasks((current: Task[]) => [...current, tempTask]);
-			});
-		});
+			const tempTask: Task = {
+				originalFilename: files[i].name,
+				vector,
+				errors: errors.length > 0 ? errors : undefined,
+				elementString: errors.length == 0 ? renderToStaticMarkup(await vector.generate()) : undefined
+			};
+
+			setTasks((current: Task[]) => [...current, tempTask]);
+		}
 	};
 
 	return (

@@ -9,7 +9,7 @@ class Vector {
 		this._imageData = imageData;
 	}
 
-	public generateVector = async (): Promise<ReactSVGElement> => {
+	public generate = async (): Promise<ReactSVGElement> => {
 		const elements: ReactSVGElement[] = [];
 
 		for (let i = 0; i < this._imageData.data.length; i += 4) {
