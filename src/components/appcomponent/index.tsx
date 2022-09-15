@@ -26,7 +26,6 @@ export const AppComponent: FC = () => {
 
 			const tempTask: Task = {
 				originalFilename: files[i].name,
-				vector,
 				errors: errors.length > 0 ? errors : undefined,
 				elementString: errors.length == 0 ? renderToStaticMarkup(await vector.generate()) : undefined
 			};
