@@ -1,7 +1,7 @@
-import { t } from "i18next";
 import JSZip from "jszip";
 import { FC, ReactElement, useContext, useState } from "react";
 import { Download } from "react-feather";
+import { useTranslation } from "react-i18next";
 import { TasksContext } from "../../contexts/taskscontext";
 import Task from "../../lib/task";
 import { IconAnchor } from "../iconanchor";
@@ -11,6 +11,8 @@ export const OutputComponent: FC = () => {
 	const [downloadLink, setDownloadLink] = useState<string>();
 
 	const { tasks } = useContext(TasksContext);
+
+	const { t } = useTranslation();
 
 	const jsZip: JSZip = new JSZip(),
 		tasksListItems: ReactElement[] = [];
