@@ -1,5 +1,7 @@
 ## Version 0.0.1 (v0.0.1)
 
+-   Updated dependencies
+
 ## Version 0.0.0 (v0.0.0)
 
 -   Initial release
