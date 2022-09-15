@@ -30,12 +30,18 @@ export const OutputComponent: FC = () => {
 		setDownloadLink(tempDataUrl);
 	});
 
-	const downloadFilename: string = btoa(Date.now().toString()).replaceAll("=", "");
+	const getDownloadLink = (): ReactElement => {
+		const text: string = t("outputComponent:download"),
+			icon: ReactElement = <Download />,
+			filename: string = btoa(Date.now().toString()).replaceAll("=", "");
+
+		return <IconAnchor text={text} icon={<Download />} download={filename} href={downloadLink} />;
+	};
 
 	return (
 		<output>
 			<ul>{tasksListItems}</ul>
-			{downloadLink && <IconAnchor text={t("outputComponent:download")} icon={<Download />} download={downloadFilename} href={downloadLink} />}
+			{downloadLink && getDownloadLink()}
 		</output>
 	);
 };
