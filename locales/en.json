@@ -3,6 +3,9 @@
 		"title": "Pixel Art to Vector",
 		"description": "A simple app to convert pixel art to vector images"
 	},
+	"outputComponent": {
+		"download": "Download"
+	},
 	"footerComponent": {
 		"visitRepository": "Visit Repository on GitHub",
 		"copyrightText": "Copyright © 2022 {{authorName}}"

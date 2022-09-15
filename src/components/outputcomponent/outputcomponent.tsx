@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import JSZip from "jszip";
 import { FC, ReactElement, useContext, useState } from "react";
 import { Download } from "react-feather";
@@ -32,7 +33,7 @@ export const OutputComponent: FC = () => {
 	return (
 		<output>
 			<ul>{tasksListItems}</ul>
-			{downloadLink && <IconAnchor text="Download" icon={<Download />} download={downloadFilename} href={downloadLink} />}
+			{downloadLink && <IconAnchor text={t("outputComponent:download")} icon={<Download />} download={downloadFilename} href={downloadLink} />}
 		</output>
 	);
 };
