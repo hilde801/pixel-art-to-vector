@@ -14,6 +14,8 @@ export const AppComponent: FC = () => {
 	const { t } = useTranslation();
 
 	const onSubmitMainForm: OnSubmitMainForm = async (files: File[]) => {
+		const tempTasks: Task[] = [];
+
 		for (let i = 0; i < files.length; i++) {
 			const vector: Vector = await Vector.fromFile(files[i]);
 			const errors: string[] = [];
@@ -24,14 +26,14 @@ export const AppComponent: FC = () => {
 
 			/** @Todo Add more errors here when necessary */
 
-			const tempTask: Task = {
+			tempTasks.push({
 				originalFilename: files[i].name,
 				errors: errors.length > 0 ? errors : undefined,
 				elementString: errors.length == 0 ? renderToStaticMarkup(await vector.generate()) : undefined
-			};
-
-			setTasks((current: Task[]) => [...current, tempTask]);
+			});
 		}
+
+		setTasks(tempTasks);
 	};
 
 	return (
