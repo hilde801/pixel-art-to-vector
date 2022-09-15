@@ -7,6 +7,7 @@ import Task from "../../lib/task";
 import { useTranslation } from "react-i18next";
 import { TasksContext } from "../../contexts/taskscontext";
 import { renderToStaticMarkup } from "react-dom/server";
+import { OutputComponent } from "../outputcomponent/outputcomponent";
 
 export const AppComponent: FC = () => {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -42,7 +43,7 @@ export const AppComponent: FC = () => {
 
 			<main>
 				{tasks.length <= 0 && <MainForm onSubmit={onSubmitMainForm} />}
-				{tasks.length > 0 && <p>{tasks.length}</p>}
+				{tasks.length > 0 && <OutputComponent />}
 			</main>
 
 			<FooterComponent />
