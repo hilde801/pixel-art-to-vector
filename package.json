@@ -8,7 +8,7 @@
 		"url": "https://github.com/hilde801"
 	},
 	"repository": "https://github.com/hilde801/pixel-art-to-vector",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"license": "Apache-2.0",
 	"scripts": {
 		"dev": "vite",
