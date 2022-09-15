@@ -36,3 +36,7 @@ $ npm run build
 # Using Yarn
 $ yarn build
 ```
+
+## License
+
+pixel-art-to-vector is licensed under [Apache 2.0](./LICENSE.txt)
