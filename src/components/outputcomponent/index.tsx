@@ -5,7 +5,6 @@
 
 import JSZip from "jszip";
 import { FC, ReactElement, useContext, useState } from "react";
-import { Download } from "react-feather";
 import { useTranslation } from "react-i18next";
 import { TasksContext } from "../../contexts/taskscontext";
 import Task from "../../lib/task";
@@ -36,16 +35,21 @@ export const OutputComponent: FC = () => {
 	});
 
 	const getDownloadLink = (): ReactElement => {
-		const text: string = t("outputComponent:download"),
-			icon: ReactElement = <Download />,
-			filename: string = btoa(Date.now().toString()).replaceAll("=", "");
+		const filename: string = btoa(Date.now().toString()).replaceAll("=", "");
 
-		return <IconAnchor text={text} icon={icon} download={filename} href={downloadLink} />;
+		return (
+			<a download={filename} href={downloadLink}>
+				{t("outputComponent:download")}
+			</a>
+		);
 	};
+
+	const filename: string = btoa(Date.now().toString()).replaceAll("=", "");
 
 	return (
 		<output>
 			<ul>{tasksListItems}</ul>
+
 			{downloadLink && getDownloadLink()}
 		</output>
 	);
