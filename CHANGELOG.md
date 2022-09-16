@@ -3,6 +3,7 @@
 -   Updated dependencies
 -   Renamed [OutputComponent](./src/components/outputcomponent/index.tsx) index filename
 -   Removed IconAnchor component
+-   Added [.prettierignore](./.prettierignore)
 
 ## Version 0.0.0 (v0.0.0)
 
