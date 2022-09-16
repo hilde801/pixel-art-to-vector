@@ -8,8 +8,8 @@ import { FC, ReactElement, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TasksContext } from "../../contexts/taskscontext";
 import Task from "../../lib/task";
-import { IconAnchor } from "../iconanchor";
 import { TasksListItem } from "./taskslistitem";
+import OutputComponentStyles from "./outputcomponent.module.css";
 
 export const OutputComponent: FC = () => {
 	const [downloadLink, setDownloadLink] = useState<string>();
@@ -44,12 +44,9 @@ export const OutputComponent: FC = () => {
 		);
 	};
 
-	const filename: string = btoa(Date.now().toString()).replaceAll("=", "");
-
 	return (
-		<output>
-			<ul>{tasksListItems}</ul>
-
+		<output className={OutputComponentStyles.outputComponent}>
+			<ul className={OutputComponentStyles.tasksList}>{tasksListItems}</ul>
 			{downloadLink && getDownloadLink()}
 		</output>
 	);
