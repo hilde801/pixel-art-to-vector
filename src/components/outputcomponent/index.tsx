@@ -40,7 +40,7 @@ export const OutputComponent: FC = () => {
 			icon: ReactElement = <Download />,
 			filename: string = btoa(Date.now().toString()).replaceAll("=", "");
 
-		return <IconAnchor text={text} icon={<Download />} download={filename} href={downloadLink} />;
+		return <IconAnchor text={text} icon={icon} download={filename} href={downloadLink} />;
 	};
 
 	return (
