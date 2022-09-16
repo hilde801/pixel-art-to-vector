@@ -5,6 +5,7 @@
 
 import { FC, ReactElement } from "react";
 import Task from "../../lib/task";
+import TasksListItemStyles from "./taskslistitem.module.css";
 
 export const TasksListItem: FC<Task> = (props: Task) => {
 	const errorsChildren = (): ReactElement[] =>
@@ -13,9 +14,9 @@ export const TasksListItem: FC<Task> = (props: Task) => {
 		});
 
 	return (
-		<li>
-			<p>{`${props.originalFilename}.svg`}</p>
-			{props.errors && <ul>{errorsChildren()}</ul>}
+		<li className={TasksListItemStyles.tasksListItem}>
+			<p className={TasksListItemStyles.filename}>{`${props.originalFilename}.svg`}</p>
+			{props.errors && <ul className={TasksListItemStyles.errorsList}>{errorsChildren()}</ul>}
 		</li>
 	);
 };
