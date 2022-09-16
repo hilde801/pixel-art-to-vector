@@ -4,6 +4,7 @@
 */
 
 import { FC, FormEvent, FormEventHandler } from "react";
+import MainFormStyles from "./mainform.module.css";
 
 export type OnSubmitMainForm = {
 	(files: File[]): void;
@@ -28,7 +29,7 @@ export const MainForm: FC<MainFormProps> = (props: MainFormProps) => {
 	};
 
 	return (
-		<form onSubmit={onSubmit}>
+		<form onSubmit={onSubmit} className={MainFormStyles.mainForm}>
 			<label htmlFor="fileInput">Upload your file</label>
 			<input type="file" name="fileInput" id="fileInput" accept="image/*" multiple required />
 			<input type="reset" value="Reset" />

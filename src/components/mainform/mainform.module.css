@@ -1,0 +1,10 @@
+.mainForm {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	gap: 0.5rem;
+}
+
+.mainForm > label,
+.mainForm > input[type="file"] {
+	grid-column: 1/3;
+}

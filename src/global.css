@@ -18,3 +18,11 @@
 	flex-direction: column;
 	gap: 1.5rem;
 }
+
+button,
+input[type="file"]::file-selector-button,
+input[type="submit"],
+input[type="reset"] {
+	padding: 0.2rem 0.5rem;
+	cursor: pointer;
+}
