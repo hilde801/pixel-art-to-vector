@@ -6,6 +6,7 @@
 import { Root, createRoot } from "react-dom/client";
 import { AppComponent } from "./components/appcomponent";
 import "./localizations/i18next";
+import "./global.css";
 
 const rootElement: HTMLElement = document.getElementById("root")!,
 	root: Root = createRoot(rootElement);
