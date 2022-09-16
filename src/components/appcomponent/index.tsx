@@ -12,7 +12,7 @@ import Task from "../../lib/task";
 import { useTranslation } from "react-i18next";
 import { TasksContext } from "../../contexts/taskscontext";
 import { renderToStaticMarkup } from "react-dom/server";
-import { OutputComponent } from "../outputcomponent/outputcomponent";
+import { OutputComponent } from "../outputcomponent";
 
 export const AppComponent: FC = () => {
 	const [tasks, setTasks] = useState<Task[]>([]);
