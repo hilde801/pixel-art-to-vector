@@ -16,7 +16,6 @@ Built with:
 Additional Credits:
 
 -   [Prettier](https://prettier.io)
--   [Feather Icons](https://feathericons.com)
 
 ## Getting Started
 
