@@ -1,7 +1,5 @@
 # Pixel Art to Vector (pixel-art-to-vector)
 
-⚠️ **This project is still under development**
-
 <img src="./docs/screenshot_1.png" alt="Light mode" />
 <img src="./docs/screenshot_2.png" alt="Dark mode" />
 
