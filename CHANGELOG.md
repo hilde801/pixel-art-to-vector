@@ -1,4 +1,5 @@
 -   Removed _"This project is still under development"_ text in [readme](./README.md)
+-   Updated dependencies
 
 ## Version 0.0.1 (v0.0.1)
 
