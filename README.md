@@ -5,14 +5,11 @@
 
 A simple app to convert pixel art to vector images
 
-Built with:
+Credits:
 
 -   [Vite](https://vitejs.dev)
 -   [React](https://reactjs.org)
 -   [TypeScript](https://www.typescriptlang.org)
-
-Additional Credits:
-
 -   [Prettier](https://prettier.io)
 
 ## Getting Started
