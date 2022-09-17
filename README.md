@@ -3,7 +3,7 @@
 <img src="./docs/screenshot_1.png" alt="Light mode" />
 <img src="./docs/screenshot_2.png" alt="Dark mode" />
 
-A simple app to convert pixel art to vector images
+An online application to convert pixel art to vector images
 
 Credits:
 

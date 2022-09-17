@@ -1,7 +1,7 @@
 {
 	"headerComponent": {
 		"title": "Pixel Art to Vector",
-		"description": "A simple app to convert pixel art to vector images"
+		"description": "An online application to convert pixel art to vector images "
 	},
 	"outputComponent": {
 		"download": "Download"
