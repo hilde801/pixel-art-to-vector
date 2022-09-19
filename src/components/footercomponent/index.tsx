@@ -5,6 +5,7 @@
 
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
+
 import { author, repository } from "../../../package.json";
 
 export const FooterComponent: FC = () => {

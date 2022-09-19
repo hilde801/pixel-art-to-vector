@@ -5,6 +5,7 @@
 
 import { FC, ReactElement } from "react";
 import Task from "../../lib/task";
+
 import TasksListItemStyles from "./taskslistitem.module.css";
 
 export const TasksListItem: FC<Task> = (props: Task) => {

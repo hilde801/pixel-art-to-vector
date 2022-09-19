@@ -5,8 +5,10 @@
 
 import { Root, createRoot } from "react-dom/client";
 import { AppComponent } from "./components/appcomponent";
-import "./localizations/i18next";
+
 import "./global.css";
+
+import "./localizations/i18next";
 
 const rootElement: HTMLElement = document.getElementById("root")!,
 	root: Root = createRoot(rootElement);
