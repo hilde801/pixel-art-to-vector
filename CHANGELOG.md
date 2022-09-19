@@ -1,3 +1,5 @@
+## Version 0.0.2 (v0.0.2)
+
 -   Removed _"This project is still under development"_ text in [README.md](./README.md)
 -   Changed the project description in the following files:
     -   [package.json](./package.json)
