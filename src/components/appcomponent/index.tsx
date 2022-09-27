@@ -4,7 +4,7 @@
 */
 
 import { FC, useState } from "react";
-import { GeneratorInputItem } from "../../generatorworker";
+import * as GeneratorWorker from "../../generatorworker";
 import { FooterComponent } from "../footercomponent";
 import { HeaderComponent } from "../headercomponent";
 import { MainForm, OnSubmitMainForm } from "../mainform";
@@ -46,13 +46,13 @@ export const AppComponent: FC = () => {
 
 	const onSubmitMainForm: OnSubmitMainForm = async (files: File[]) => {
 		setStatus("Working");
-		const inputs: GeneratorInputItem[] = [];
+		const items: GeneratorWorker.GeneratorInputItem[] = [];
 
 		for (let i = 0; i < files.length; i++) {
 			const fileResult: string = await readFile(files[i]),
 				imageData: ImageData = await getImageData(fileResult);
 
-			inputs.push({
+			items.push({
 				imageData: imageData.data,
 				filename: files[i].name,
 				width: imageData.width,
@@ -60,8 +60,15 @@ export const AppComponent: FC = () => {
 			});
 		}
 
-		console.log(inputs);
-		setStatus("Finished");
+		const input: GeneratorWorker.GeneratorInput = { items },
+			worker: Worker = GeneratorWorker.newGeneratorWorkerInstance();
+
+		worker.onmessage = (message: MessageEvent<string>) => {
+			const outputs: GeneratorWorker.GeneratorOutput = JSON.parse(message.data);
+			setStatus("Finished");
+		};
+
+		worker.postMessage(JSON.stringify(input));
 	};
 
 	return (
