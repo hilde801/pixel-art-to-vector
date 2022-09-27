@@ -3,9 +3,21 @@
 	Copyright 2022 Hilder Gill (hilde801) <hildergill@gmail.com>
 */
 
+import { GeneratorInput, GeneratorInputItem } from "./generatorinput";
+import { GeneratorOutput, GeneratorOutputItem } from "./generatoroutput";
+
 const generatorWorker = (): void => {
-	onmessage = () => {
-		// TODO Add something here later
+	onmessage = (message: MessageEvent<string>) => {
+		const input: GeneratorInput = JSON.parse(message.data);
+
+		const items: GeneratorOutputItem[] = input.items.map((item: GeneratorInputItem) => {
+			return {
+				filename: item.filename
+			};
+		});
+
+		const output: GeneratorOutput = { items };
+		postMessage(JSON.stringify(output));
 	};
 };
 
