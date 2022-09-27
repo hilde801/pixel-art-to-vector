@@ -4,6 +4,7 @@
 */
 
 import { FC, useState } from "react";
+import { GeneratorInputItem } from "../../generatorworker";
 import { FooterComponent } from "../footercomponent";
 import { HeaderComponent } from "../headercomponent";
 import { MainForm, OnSubmitMainForm } from "../mainform";
@@ -11,51 +12,57 @@ import { MainForm, OnSubmitMainForm } from "../mainform";
 type Status = "Ready" | "Working" | "Finished";
 
 export const AppComponent: FC = () => {
-	/* const [tasks, setTasks] = useState<Task[]>([]);
+	const [status, setStatus] = useState<Status>("Ready");
 
-	const { t } = useTranslation();
+	const readFile = (file: File): Promise<string> =>
+		new Promise((resolve) => {
+			const fileReader: FileReader = new FileReader();
+
+			fileReader.onload = () => {
+				return resolve(String(fileReader.result));
+			};
+
+			fileReader.readAsDataURL(file);
+		});
+
+	const getImageData = (input: string): Promise<ImageData> =>
+		new Promise<ImageData>((resolve) => {
+			const image: HTMLImageElement = document.createElement("img");
+
+			image.onload = () => {
+				const canvas: HTMLCanvasElement = document.createElement("canvas");
+				canvas.width = image.width;
+				canvas.height = image.height;
+
+				const context: CanvasRenderingContext2D = canvas.getContext("2d")!;
+				context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+				const imageData: ImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+				return resolve(imageData);
+			};
+
+			image.src = String(input);
+		});
 
 	const onSubmitMainForm: OnSubmitMainForm = async (files: File[]) => {
-		const tempTasks: Task[] = [];
+		setStatus("Working");
+		const inputs: GeneratorInputItem[] = [];
 
 		for (let i = 0; i < files.length; i++) {
-			const vector: Vector = await Vector.fromFile(files[i]);
-			const errors: string[] = [];
+			const fileResult: string = await readFile(files[i]),
+				imageData: ImageData = await getImageData(fileResult);
 
-			if (vector.width > 256 || vector.height > 256) {
-				errors.push(t("errors:exceedMaximumSize"));
-			}
-
-			tempTasks.push({
-				originalFilename: files[i].name,
-				errors: errors.length > 0 ? errors : undefined,
-				elementString: errors.length == 0 ? renderToStaticMarkup(await vector.generate()) : undefined
+			inputs.push({
+				imageData: imageData.data,
+				filename: files[i].name,
+				width: imageData.width,
+				height: imageData.height
 			});
 		}
 
-		setTasks(tempTasks);
-	}; */
-
-	/* return (
-		<TasksContext.Provider value={{ tasks }}>
-			<HeaderComponent />
-
-			<main>
-				{tasks.length <= 0 && <MainForm onSubmit={onSubmitMainForm} />}
-				{tasks.length > 0 && <OutputComponent />}
-			</main>
-
-			<FooterComponent />
-		</TasksContext.Provider>
-	); */
-
-	const onSubmitMainForm: OnSubmitMainForm = async (files: File[]) => {
-		/** @Todo Add something here later */
-		/** @Todo Add something here later */
-		/** @Todo Add something here later */
+		console.log(inputs);
+		setStatus("Finished");
 	};
-
-	const [status, setStatus] = useState<Status>("Ready");
 
 	return (
 		<>
@@ -67,6 +74,7 @@ export const AppComponent: FC = () => {
 				{/** @Todo Add something here later */}
 
 				{status == "Ready" && <MainForm onSubmit={onSubmitMainForm} />}
+				{status == "Working" && <p>Working...</p>}
 			</main>
 
 			<FooterComponent />
