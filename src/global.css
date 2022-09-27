@@ -31,3 +31,11 @@ input[type="reset"] {
 	padding: 0.2rem 0.5rem;
 	cursor: pointer;
 }
+
+@media (max-width: 639px) {
+	#root {
+		width: 100%;
+		padding: 1rem;
+		margin: 0;
+	}
+}
