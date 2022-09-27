@@ -3,7 +3,7 @@
 	Copyright 2022 Hilder Gill (hilde801) <hildergill@gmail.com>
 */
 
-import { FC, ReactElement } from "react";
+/* import { FC, ReactElement } from "react";
 import Task from "../../lib/task";
 
 import TasksListItemStyles from "./taskslistitem.module.css";
@@ -20,4 +20,8 @@ export const TasksListItem: FC<Task> = (props: Task) => {
 			{props.errors && <ul className={TasksListItemStyles.errorsList}>{errorsChildren()}</ul>}
 		</li>
 	);
+}; */
+
+export const TasksListItem: React.FC = () => {
+	return <p>TODO</p>;
 };

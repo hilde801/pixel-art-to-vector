@@ -7,12 +7,12 @@ import JSZip from "jszip";
 import { FC, ReactElement, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TasksContext } from "../../contexts/taskscontext";
-import Task from "../../lib/task";
+/* import Task from "../../lib/task"; */
 import { TasksListItem } from "./taskslistitem";
 
 import OutputComponentStyles from "./outputcomponent.module.css";
 
-export const OutputComponent: FC = () => {
+/* export const OutputComponent: FC = () => {
 	const [downloadLink, setDownloadLink] = useState<string>();
 
 	const { tasks } = useContext(TasksContext);
@@ -51,4 +51,4 @@ export const OutputComponent: FC = () => {
 			{downloadLink && getDownloadLink()}
 		</output>
 	);
-};
+}; */
