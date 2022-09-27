@@ -52,8 +52,14 @@ export const AppComponent: FC = () => {
 			const fileResult: string = await readFile(files[i]),
 				imageData: ImageData = await getImageData(fileResult);
 
+			const numberArray: number[] = [];
+
+			for (let j = 0; j < imageData.data.length; j++) {
+				numberArray.push(imageData.data[j]);
+			}
+
 			items.push({
-				imageData: imageData.data,
+				imageData: numberArray,
 				filename: files[i].name,
 				width: imageData.width,
 				height: imageData.height
@@ -65,6 +71,9 @@ export const AppComponent: FC = () => {
 
 		worker.onmessage = (message: MessageEvent<string>) => {
 			const outputs: GeneratorWorker.GeneratorOutput = JSON.parse(message.data);
+
+			/** @Todo Add somerthing here later */
+
 			setStatus("Finished");
 		};
 
@@ -76,10 +85,6 @@ export const AppComponent: FC = () => {
 			<HeaderComponent />
 
 			<main>
-				{/** @Todo Add something here later */}
-				{/** @Todo Add something here later */}
-				{/** @Todo Add something here later */}
-
 				{status == "Ready" && <MainForm onSubmit={onSubmitMainForm} />}
 				{status == "Working" && <p>Working...</p>}
 			</main>

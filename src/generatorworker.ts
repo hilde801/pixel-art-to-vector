@@ -4,8 +4,8 @@
 */
 
 export type GeneratorInputItem = {
+	imageData: number[];
 	filename: string;
-	imageData: Uint8ClampedArray;
 	width: number;
 	height: number;
 };
@@ -26,9 +26,10 @@ export type GeneratorOutput = {
 
 const generatorWorker = (): void => {
 	onmessage = (message: MessageEvent<string>) => {
-		const input: GeneratorInput = JSON.parse(message.data);
+		const input: GeneratorInput = JSON.parse(message.data),
+			items: GeneratorOutputItem[] = [];
 
-		const items: GeneratorOutputItem[] = input.items.map((item: GeneratorInputItem) => {
+		for (let i = 0; i < input.items.length; i++) {
 			const generateColorHex = (color: number): string => {
 				const hex: string = color.toString(16).toLocaleUpperCase();
 				return hex.length == 2 ? hex : `0${hex}`;
@@ -45,43 +46,45 @@ const generatorWorker = (): void => {
 
 			const errorKeys: string[] = [];
 
-			if (item.width > 256 || item.height > 256) {
+			if (input.items[i].width > 256 || input.items[i].height > 256) {
 				errorKeys.push("errors:exceedMaximumSize");
 			}
 
 			const pixelProps: any[] = [];
 
-			for (let i = 0; i < item.imageData.length; i += 4) {
-				const red: number = item.imageData[i],
-					green: number = item.imageData[i + 1],
-					blue: number = item.imageData[i + 2],
-					alpha: number = item.imageData[i + 3];
+			if (errorKeys.length == 0) {
+				for (let j = 0; j < input.items[i].imageData.length; j += 4) {
+					const red: number = input.items[i].imageData[j],
+						green: number = input.items[i].imageData[j + 1],
+						blue: number = input.items[i].imageData[j + 2],
+						alpha: number = input.items[i].imageData[j + 3];
 
-				if (alpha > 0) {
-					const index = i / 4,
-						y = Math.trunc(index / item.width),
-						x = index % item.width;
+					if (alpha > 0) {
+						const index = j / 4,
+							y = Math.trunc(index / input.items[i].width),
+							x = index % input.items[i].width;
 
-					pixelProps.push({
-						x,
-						y,
-						width: 1,
-						height: 1,
-						style: {
-							fill: hexString(red, green, blue, alpha),
-							fillOpacity: alpha / 255
-						},
-						key: index
-					});
+						pixelProps.push({
+							x,
+							y,
+							width: 1,
+							height: 1,
+							style: {
+								fill: hexString(red, green, blue, alpha),
+								fillOpacity: alpha / 255
+							},
+							key: index
+						});
+					}
 				}
 			}
 
-			return {
-				filename: item.filename,
+			items.push({
+				filename: input.items[i].filename,
 				errorKeys: errorKeys.length > 0 ? errorKeys : undefined,
-				pixelPropsArray: errorKeys.length > 0 ? pixelProps : undefined
-			};
-		});
+				pixelPropsArray: pixelProps.length > 0 ? pixelProps : undefined
+			});
+		}
 
 		const output: GeneratorOutput = { items };
 		postMessage(JSON.stringify(output));
