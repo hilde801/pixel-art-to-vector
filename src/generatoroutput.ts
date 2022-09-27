@@ -6,7 +6,7 @@
 export type GeneratorOutputItem = {
 	filename: string;
 	markup?: string;
-	errors?: string[];
+	errorKeys?: string[];
 };
 
 export type GeneratorOutput = {

@@ -11,12 +11,20 @@ const generatorWorker = (): void => {
 		const input: GeneratorInput = JSON.parse(message.data);
 
 		const items: GeneratorOutputItem[] = input.items.map((item: GeneratorInputItem) => {
+			const errorKeys: string[] = [];
+
+			if (item.width > 256 || item.height > 256) {
+				errorKeys.push("errors:exceedMaximumSize");
+			}
+
 			return {
-				filename: item.filename
+				filename: item.filename,
+				errorKeys: errorKeys.length > 0 ? errorKeys : undefined
 			};
 		});
 
 		const output: GeneratorOutput = { items };
+
 		postMessage(JSON.stringify(output));
 	};
 };
