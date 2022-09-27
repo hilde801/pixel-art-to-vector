@@ -3,13 +3,13 @@
 	Copyright 2022 Hilder Gill (hilde801) <hildergill@gmail.com>
 */
 
-type GeneratorInput = {
-	images: {
-		filename: string;
-		imageData: Uint8ArrayConstructor;
-		width: number;
-		height: number;
-	}[];
+export type GeneratorInputItem = {
+	filename: string;
+	imageData: Uint8ArrayConstructor;
+	width: number;
+	height: number;
 };
 
-export default GeneratorInput;
+export type GeneratorInput = {
+	items: GeneratorInputItem[];
+};

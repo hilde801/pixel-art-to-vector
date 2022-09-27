@@ -3,12 +3,12 @@
 	Copyright 2022 Hilder Gill (hilde801) <hildergill@gmail.com>
 */
 
-type GeneratorOutput = {
-	outputs: {
-		filename: string;
-		markup?: string;
-		errors?: string[];
-	}[];
+export type GeneratorOutputItem = {
+	filename: string;
+	markup?: string;
+	errors?: string[];
 };
 
-export default GeneratorOutput;
+export type GeneratorOutput = {
+	items: GeneratorOutputItem[];
+};
