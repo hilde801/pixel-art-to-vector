@@ -1,3 +1,8 @@
+## Version 0.0.3 (v0.0.3)
+
+-   Added the style rules for mobile/smaller viewports in [src/global.css](./src/global.css)
+-   Updated dependencies
+
 ## Version 0.0.2 (v0.0.2)
 
 -   Removed _"This project is still under development"_ text in [README.md](./README.md)
