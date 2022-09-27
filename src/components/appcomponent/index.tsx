@@ -4,15 +4,11 @@
 */
 
 import { FC, useState } from "react";
-/* import Vector from "../../lib/vector"; */
 import { FooterComponent } from "../footercomponent";
 import { HeaderComponent } from "../headercomponent";
 import { MainForm, OnSubmitMainForm } from "../mainform";
-/* import Task from "../../lib/task"; */
-import { useTranslation } from "react-i18next";
-import { TasksContext } from "../../contexts/taskscontext";
-import { renderToStaticMarkup } from "react-dom/server";
-/* import { OutputComponent } from "../outputcomponent"; */
+
+type Status = "Ready" | "Working" | "Finished";
 
 export const AppComponent: FC = () => {
 	/* const [tasks, setTasks] = useState<Task[]>([]);
@@ -53,6 +49,14 @@ export const AppComponent: FC = () => {
 		</TasksContext.Provider>
 	); */
 
+	const onSubmitMainForm: OnSubmitMainForm = async (files: File[]) => {
+		/** @Todo Add something here later */
+		/** @Todo Add something here later */
+		/** @Todo Add something here later */
+	};
+
+	const [status, setStatus] = useState<Status>("Ready");
+
 	return (
 		<>
 			<HeaderComponent />
@@ -61,6 +65,8 @@ export const AppComponent: FC = () => {
 				{/** @Todo Add something here later */}
 				{/** @Todo Add something here later */}
 				{/** @Todo Add something here later */}
+
+				{status == "Ready" && <MainForm onSubmit={onSubmitMainForm} />}
 			</main>
 
 			<FooterComponent />
