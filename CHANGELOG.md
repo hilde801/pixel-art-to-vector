@@ -1,6 +1,8 @@
 ## Version 0.0.3 (v0.0.3)
 
 -   Added the style rules for mobile/smaller viewports in [src/global.css](./src/global.css)
+-   Moved the rosources-heavy operations to a separate web worker at [src/generatorworker.ts](./src/generatorworker.ts)
+-   Deleted all files previously at src/lib
 -   Updated dependencies
 
 ## Version 0.0.2 (v0.0.2)
