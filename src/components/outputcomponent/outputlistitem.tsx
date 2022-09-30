@@ -6,7 +6,7 @@
 import { FC, ReactElement } from "react";
 import { useTranslation } from "react-i18next";
 
-import TasksListItemStyles from "./taskslistitem.module.css";
+import OutputListItemStyle from "./outputlistitem.module.css";
 
 export type OutputListItemProps = {
 	filename: string;
@@ -23,9 +23,9 @@ export const OutputListItem: FC<OutputListItemProps> = (props: OutputListItemPro
 		});
 
 	return (
-		<li className={TasksListItemStyles.tasksListItem}>
-			<p className={TasksListItemStyles.filename}>{`${props.filename}.svg`}</p>
-			{props.errorKeys && <ul className={TasksListItemStyles.errorsList}>{errorsChildren()}</ul>}
+		<li className={OutputListItemStyle.tasksListItem}>
+			<p className={OutputListItemStyle.filename}>{`${props.filename}.svg`}</p>
+			{props.errorKeys && <ul className={OutputListItemStyle.errorsList}>{errorsChildren()}</ul>}
 		</li>
 	);
 };
