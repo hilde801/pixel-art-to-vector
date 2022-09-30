@@ -4,6 +4,7 @@
 -   Moved the rosources-heavy operations to a separate web worker at [src/generatorworker.ts](./src/generatorworker.ts)
 -   Deleted all files previously at src/lib
 -   Overhauled [src/components/outputcomponent/index.tsx](./src/components/outputcomponent/index.tsx)
+    -   Renamed TasksListItem to [src/components/outputcomponent/outputlistitem.tsx](./src/components/outputcomponent/outputlistitem.tsx)
 -   Removed context file
 -   Updated dependencies
 
