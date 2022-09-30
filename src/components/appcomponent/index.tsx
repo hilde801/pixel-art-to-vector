@@ -3,7 +3,7 @@
 	Copyright 2022 Hilder Gill (hilde801) <hildergill@gmail.com>
 */
 
-import { FC, useState } from "react";
+import { createElement, FC, ReactElement, useState } from "react";
 import * as GeneratorWorker from "../../generatorworker";
 import { FooterComponent } from "../footercomponent";
 import { HeaderComponent } from "../headercomponent";
@@ -70,9 +70,20 @@ export const AppComponent: FC = () => {
 			worker: Worker = GeneratorWorker.newGeneratorWorkerInstance();
 
 		worker.onmessage = (message: MessageEvent<string>) => {
-			const outputs: GeneratorWorker.GeneratorOutput = JSON.parse(message.data);
+			const outputs: GeneratorWorker.GeneratorOutput = JSON.parse(message.data),
+				temp: any[] = [];
 
-			/** @Todo Add somerthing here later */
+			for (let i = 0; i < outputs.items.length; i++) {
+				if (outputs.items[i].errorKeys.length == 0) {
+					const rects: ReactElement[] = outputs.items[i].pixelPropsArray!.map((props: any, key: number) => {
+						return <rect {...props} key={key} />;
+					});
+
+					const props = { width: outputs.items[i].width, height: outputs.items[i].height };
+
+					temp.push(createElement("svg", props, rects));
+				} else temp.push(undefined);
+			}
 
 			setStatus("Finished");
 		};

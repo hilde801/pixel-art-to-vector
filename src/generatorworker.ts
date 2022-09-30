@@ -17,7 +17,9 @@ export type GeneratorInput = {
 export type GeneratorOutputItem = {
 	filename: string;
 	pixelPropsArray?: any[];
-	errorKeys?: string[];
+	errorKeys: string[];
+	width: number;
+	height: number;
 };
 
 export type GeneratorOutput = {
@@ -81,8 +83,10 @@ const generatorWorker = (): void => {
 
 			items.push({
 				filename: input.items[i].filename,
-				errorKeys: errorKeys.length > 0 ? errorKeys : undefined,
-				pixelPropsArray: pixelProps.length > 0 ? pixelProps : undefined
+				errorKeys,
+				pixelPropsArray: pixelProps.length > 0 ? pixelProps : undefined,
+				width: input.items[i].width,
+				height: input.items[i].height
 			});
 		}
 
