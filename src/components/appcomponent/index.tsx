@@ -87,7 +87,11 @@ export const AppComponent: FC = () => {
 						return <rect {...props} key={key} />;
 					});
 
-					const props = { width: outputs.items[i].width, height: outputs.items[i].height };
+					const props = {
+						xmlns: "http://www.w3.org/2000/svg",
+						width: outputs.items[i].width,
+						height: outputs.items[i].height
+					};
 
 					tempProp.vectorComponent = createElement("svg", props, rects);
 				}
