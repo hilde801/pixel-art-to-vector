@@ -4,30 +4,31 @@
 */
 
 import JSZip from "jszip";
-import { FC, ReactElement, useContext, useState } from "react";
+import { FC, ReactElement, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TasksContext } from "../../contexts/taskscontext";
-/* import Task from "../../lib/task"; */
-import { TasksListItem } from "./taskslistitem";
+import { OutputListItem, OutputListItemProps } from "./outputlistitem";
+import { renderToStaticMarkup } from "react-dom/server";
 
 import OutputComponentStyles from "./outputcomponent.module.css";
 
-/* export const OutputComponent: FC = () => {
-	const [downloadLink, setDownloadLink] = useState<string>();
+export type OutputComponentProps = {
+	items: OutputListItemProps[];
+};
 
-	const { tasks } = useContext(TasksContext);
+export const OutputComponent: FC<OutputComponentProps> = (props: OutputComponentProps) => {
+	const [downloadLink, setDownloadLink] = useState<string>();
 
 	const { t } = useTranslation();
 
 	const jsZip: JSZip = new JSZip(),
 		tasksListItems: ReactElement[] = [];
 
-	tasks.forEach((task: Task, index: number) => {
-		if (task.elementString) {
-			jsZip.file(`${task.originalFilename}.svg`, task.elementString);
+	props.items.forEach((item: OutputListItemProps, index: number) => {
+		if (item.errorKeys.length == 0) {
+			jsZip.file(`${item.filename}.svg`, renderToStaticMarkup(item.vectorComponent!));
 		}
 
-		tasksListItems.push(<TasksListItem {...task} key={index} />);
+		tasksListItems.push(<OutputListItem {...item} key={index} />);
 	});
 
 	jsZip.generateAsync({ type: "base64" }).then((base64: string) => {
@@ -51,4 +52,4 @@ import OutputComponentStyles from "./outputcomponent.module.css";
 			{downloadLink && getDownloadLink()}
 		</output>
 	);
-}; */
+};

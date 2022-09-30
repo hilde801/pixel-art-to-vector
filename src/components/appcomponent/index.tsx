@@ -8,11 +8,14 @@ import * as GeneratorWorker from "../../generatorworker";
 import { FooterComponent } from "../footercomponent";
 import { HeaderComponent } from "../headercomponent";
 import { MainForm, OnSubmitMainForm } from "../mainform";
+import { OutputComponent } from "../outputcomponent";
+import { OutputListItemProps } from "../outputcomponent/outputlistitem";
 
 type Status = "Ready" | "Working" | "Finished";
 
 export const AppComponent: FC = () => {
 	const [status, setStatus] = useState<Status>("Ready");
+	const [outputItems, setOutputItems] = useState<OutputListItemProps[]>([]);
 
 	const readFile = (file: File): Promise<string> =>
 		new Promise((resolve) => {
@@ -71,9 +74,14 @@ export const AppComponent: FC = () => {
 
 		worker.onmessage = (message: MessageEvent<string>) => {
 			const outputs: GeneratorWorker.GeneratorOutput = JSON.parse(message.data),
-				temp: any[] = [];
+				outputItems: OutputListItemProps[] = [];
 
 			for (let i = 0; i < outputs.items.length; i++) {
+				const tempProp: OutputListItemProps = {
+					filename: outputs.items[i].filename,
+					errorKeys: outputs.items[i].errorKeys
+				};
+
 				if (outputs.items[i].errorKeys.length == 0) {
 					const rects: ReactElement[] = outputs.items[i].pixelPropsArray!.map((props: any, key: number) => {
 						return <rect {...props} key={key} />;
@@ -81,10 +89,13 @@ export const AppComponent: FC = () => {
 
 					const props = { width: outputs.items[i].width, height: outputs.items[i].height };
 
-					temp.push(createElement("svg", props, rects));
-				} else temp.push(undefined);
+					tempProp.vectorComponent = createElement("svg", props, rects);
+				}
+
+				outputItems.push(tempProp);
 			}
 
+			setOutputItems(outputItems);
 			setStatus("Finished");
 		};
 
@@ -98,6 +109,7 @@ export const AppComponent: FC = () => {
 			<main>
 				{status == "Ready" && <MainForm onSubmit={onSubmitMainForm} />}
 				{status == "Working" && <p>Working...</p>}
+				{status == "Finished" && <OutputComponent items={outputItems} />}
 			</main>
 
 			<FooterComponent />
