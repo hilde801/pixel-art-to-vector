@@ -1,5 +1,7 @@
 ## Version 0.0.4 (v0.0.4)
 
+-   Updated dependencies
+
 ## Version 0.0.3 (v0.0.3)
 
 -   Added the style rules for mobile/smaller viewports in [src/global.css](./src/global.css)
