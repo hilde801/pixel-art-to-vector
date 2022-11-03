@@ -1,17 +1,21 @@
+## Future
+
+-   Some fixes to [CHANGELOG.md](./CHANGELOG.md)
+
 ## Version 0.0.4 (v0.0.4)
 
 -   Removed the language attribute in [index.html](index.html)
--   Removed the role for the root element in [index.html](index.html)
+-   Added the `none` role attribute in the root element in [index.html](index.html)
 -   Updated dependencies
 
 ## Version 0.0.3 (v0.0.3)
 
--   Added the style rules for mobile/smaller viewports in [src/global.css](./src/global.css)
--   Moved the resources-heavy operations to a separate web worker at [src/generatorworker.ts](./src/generatorworker.ts)
+-   Added style rules for mobile/smaller viewports in [src/global.css](./src/global.css)
+-   Moved resource-heavy operations to a separate web worker at [src/generatorworker.ts](./src/generatorworker.ts)
 -   Deleted all files previously at src/lib
 -   Overhauled [src/components/outputcomponent/index.tsx](./src/components/outputcomponent/index.tsx)
     -   Renamed TasksListItem to [src/components/outputcomponent/outputlistitem.tsx](./src/components/outputcomponent/outputlistitem.tsx)
--   Removed context file
+-   Removed unused context file
 -   Updated dependencies
 
 ## Version 0.0.2 (v0.0.2)
