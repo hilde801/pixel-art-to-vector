@@ -1,6 +1,7 @@
-## Future
+## Version 0.0.5 (v0.0.5)
 
 -   Some fixes to [CHANGELOG.md](./CHANGELOG.md)
+-   Updated dependencies
 
 ## Version 0.0.4 (v0.0.4)
 
